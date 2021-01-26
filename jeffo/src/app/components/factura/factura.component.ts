@@ -1,6 +1,9 @@
-import { FACTURAS } from './../../mock.facturas';
+import { Detalle } from './../../interfaces/detalle';
+import { MasterService } from './../../servicios/master.service';
+import { FACTURAS } from '../../mock/mock.facturas';
 import { Component, OnInit } from '@angular/core';
 import { Factura } from '../../interfaces/factura';
+import { FacturaService } from 'src/app/servicios/factura.service';
 
 @Component({
   selector: 'app-factura',
@@ -11,26 +14,25 @@ export class FacturaComponent implements OnInit {
 
   Factura = FACTURAS
   selectedFactura: Factura;
-
+  facturas: Factura[];
+  detalles=[];
+  facturaElejida: Factura;
   constructor() { }
  prueba = "probandoAndo"
 
- factura: Factura = {
-  fechadeEmision : "05/01/1998",
-  numeroDeFactura: "0511",
-  cedula: "1804470738",
-  nombreCliente: "Armando Paredes",
-  direccion: "Stalingrado-Russia",
-  telefono: "0989874575",
-  subtotal: "54",
-  iva: "21",
-  total: "555"
-}
+
 
   ngOnInit(): void {
   }
-
-  onSelect(factura: Factura): void {
-    this.selectedFactura = factura;
+  obtenerDetallesFactura(factura: Factura): void {
+    this.facturaElejida = factura;
+   // this.detalles = this.FacturaService.getDetalles(factura);
   }
-}
+  getFacturas(): void {
+    //this.facturas = this.MasterService.getFacturas();
+  }
+  }
+
+
+
+

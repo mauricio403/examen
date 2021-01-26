@@ -1,12 +1,10 @@
+import { Cliente } from './cliente';
 export interface Factura {
-    fechadeEmision : string;
-    numeroDeFactura: string;
-    cedula: string;
-    nombreCliente: String;
-    direccion: String;
-    telefono: string;
-    subtotal: string;
-    iva: string;
-    total: string;
-
+  id: number,
+  fechaEmision: string,
+  numeroFactura: number,
+  subtotal: number,
+  iva: number,
+  total: number
+  cliente: Cliente
 }

@@ -1,37 +1,49 @@
 <p>{{prueba}}</p>
 
-<div><span>Numero de factura: </span>{{factura.numeroDeFactura}}</div>
-<h2>        Detalles de la factura</h2>
-<div><span>direccion: </span>{{factura.direccion}}</div>
-<div><span>Nombre del cliente: </span>{{factura.nombreCliente}}</div>
 
-<div><span>Emitida el : </span>{{factura.fechadeEmision}}</div>
-<div><span>Telefono: </span>{{factura.telefono}}</div>
+  <button (click)="obtenerFacturas()" >Master</button>
+  <div *ngIf="facturas">
+    <ul>
+      <li *ngFor="let factura of facturas"
+        (click)="traerFactura(factura)">
+        <h3>   Factura: {{factura.cliente.nombre}}</h3>
+        Numero de factura: {{factura.id}}<br>
+        Fecha: {{factura.fechaEmision}}<br>
+        Subtotal: {{factura.subtotal}}<br>
+        Iva: {{factura.iva}}<br>
+        Total: {{factura.total}}<br>
 
-
-<div><span>Subtotal: </span>{{factura.subtotal}}</div>
-
-<div><span>IVA: </span>{{factura.iva}}</div>
-
-<div><span>total a pagar: </span>{{factura.total}}</div>
-
-<h2>Mis facturas</h2>
-<ul class="heroes">
-  <li *ngFor="let factura of Factura"
-    [class.selected]="factura === selectedFactura"
-    (click)="onSelect(factura)">
-    <span class="badge">{{factura.cedula}}</span> {{factura.nombreCliente}}
-  </li>
-</ul>
-
-<div *ngIf="selectedFactura">
-
-  <h2>{{selectedFactura.nombreCliente | uppercase}} Detalles</h2>
-  <div><span>id: </span>{{selectedFactura.numeroDeFactura}}</div>
-  <div>
-    <label>nombre:
-      <input [(ngModel)]="selectedFactura.nombreCliente" placeholder="name"/>
-    </label>
+      </li>
+    </ul>
   </div>
 
+<div *ngIf="detalles">
+  <ul>
+    <li *ngFor="let detalle of detalles"
+      (click)="traerFactura(detalle)">
+      <h2>
+        Nombre: {{detalle.producto.id}}
+
+      </h2>
+      <h2>
+        Id: {{detalle.producto.id}}
+
+      </h2>
+      <h2>
+        Cantidad: {{detalle.cantidad}}
+
+      </h2>
+      <h2>
+        Precio unitario: {{detalle.valorUnitario}}
+
+      </h2>
+      <h2>
+        Precio total: {{detalle.precio}}
+      </h2>
+    </li>
+  </ul>
 </div>
+
+
+
+
